@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Video Overlay</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* ganti jadi warna solid kalau tidak butuh transparan, misal: #000000 */
+    overflow: hidden;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ganti ke "cover" kalau ingin video memenuhi penuh tanpa border */
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+  <video id="overlayVideo" autoplay muted loop playsinline>
+    <!-- GANTI URL di bawah ini dengan link video kamu di GitHub (raw link) -->
+    <source src="https://raw.githubusercontent.com/Wayy1702/overlay/main/hanabi.mp4" type="video/mp4">
+  </video>
+
+  <script>
+    // Memastikan video selalu autoplay & loop, walau browser source kadang strict soal autoplay
+    const vid = document.getElementById('overlayVideo');
+    vid.play().catch(() => {
+      // Jika autoplay diblokir, coba play ulang setiap ada interaksi/reload
+      document.addEventListener('click', () => vid.play());
+    });
+  </script>
+
+</body>
+</html>
